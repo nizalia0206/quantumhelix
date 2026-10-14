@@ -81,7 +81,7 @@ h2{font-size:clamp(28px,4.2vw,52px);line-height:1.04;letter-spacing:-.02em}
 .readout span{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 .readout strong{font-family:var(--f-display);font-weight:400;font-size:clamp(18px,2.2vw,28px);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .readout small{color:var(--muted);font-size:12px}
-@media (max-width:820px){.hero-sub{grid-template-columns:1fr}.readouts{grid-template-columns:repeat(2,minmax(0,1fr))}.readout:nth-child(3){padding-left:0;border-left:0}.readout:nth-child(n+3){border-top:1px solid var(--line);margin-top:14px}}
+@media (max-width:820px){#heroGL{opacity:.5}.hero-sub{grid-template-columns:1fr}.readouts{grid-template-columns:repeat(2,minmax(0,1fr))}.readout:nth-child(3){padding-left:0;border-left:0}.readout:nth-child(n+3){border-top:1px solid var(--line);margin-top:14px}}
 
 /* SECTIONS */
 section.band{padding-block:clamp(72px,10vw,130px);position:relative}
@@ -100,6 +100,7 @@ section.band{padding-block:clamp(72px,10vw,130px);position:relative}
 .stage-top b{color:var(--fg);font-weight:500}
 .live{display:inline-flex;align-items:center;gap:6px}
 .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--hot);box-shadow:0 0 8px var(--hot);animation:pulse 1.4s infinite}
+@media (max-width:620px){.live .long{display:none}}
 .paused .live::before{animation:none;background:var(--dim);box-shadow:none}
 .controls{padding:20px;display:flex;flex-direction:column;gap:18px;min-width:0}
 .ctl label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}
@@ -131,12 +132,15 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
 .scan-side{padding:16px;display:flex;flex-direction:column;gap:14px}
 .scan-stage{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 50% 50%, #101A33 0%, var(--panel) 70%)}
-#scanGL{display:block;width:100%;height:clamp(260px,32vw,380px);cursor:grab}
+.scan-view{position:relative}
+#scanGL{display:block;width:100%;height:clamp(240px,32vw,380px);cursor:grab;touch-action:pan-y}
+@media (max-width:620px){.legend i{width:70px}}
 #scanGL:active{cursor:grabbing}
-.legend{position:absolute;right:16px;bottom:14px;display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;pointer-events:none}
+.legend{position:absolute;right:16px;top:14px;display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;pointer-events:none}
 .legend i{display:block;width:120px;height:6px;border-radius:6px;background:linear-gradient(90deg,#22408F,#2FA3C7,#FFB547,#FF4F6E)}
 .scan-hint{position:absolute;left:16px;bottom:14px;font-family:var(--f-mono);font-size:10px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;pointer-events:none}
-.track-wrap{padding:14px 16px 10px;border-top:1px solid var(--line);overflow-x:auto}
+.track-wrap{padding:14px 16px 10px;border-top:1px solid var(--line);overflow-x:auto;position:relative}
+#track{touch-action:pan-x pan-y}
 #track{display:block;width:100%;height:110px}
 .scan-results{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px;margin-top:16px}
 @media (max-width:900px){.scan-results{grid-template-columns:1fr}}
@@ -159,7 +163,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .tip b{font-family:var(--f-mono);font-weight:500}
 .tip .k{color:var(--dim);font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
 .tip dl{display:grid;grid-template-columns:auto auto;gap:2px 14px;margin:6px 0 0}
-.tip dd{margin:0;text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tip dd{margin:0;white-space:nowrap;text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .tip dt{color:var(--muted)}
 
 /* PIPELINE */
@@ -250,7 +254,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="sim-grid">
       <div class="panel stage" id="simStage">
         <canvas id="simCanvas" aria-label="Wavefunction of a proton in a double-well potential"></canvas>
-        <div class="stage-top"><span class="live">LIVE · split-step Fourier · 512 grid points</span><span>t = <b id="simT">0</b> fs</span></div>
+        <div class="stage-top"><span class="live">LIVE<span class="long"> · split-step Fourier · 512 grid points</span></span><span>t = <b id="simT">0</b> fs</span></div>
       </div>
       <div class="panel controls">
         <div class="ctl"><label for="sV0">Barrier height <output id="oV0"></output></label><input type="range" id="sV0" min="0.04" max="0.40" step="0.005" value="0.10"></div>
@@ -268,7 +272,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div><span>Tautomer well</span><strong id="mPR">0%</strong></div>
           <div><span>Zero-point E₀</span><strong id="mE0">–</strong></div>
           <div><span>WKB T</span><strong id="mT">–</strong></div>
-          <div><span>Tunnel time τ</span><strong id="mTau">–</strong></div>
+          <div><span>Tunnel time</span><strong id="mTau">–</strong></div>
         </div>
         <div class="panel" id="sparkWrap" style="background:var(--deep)"><span class="spark-label">Probability in tautomer well</span><canvas id="spark"></canvas></div>
         <p class="note">1D model: V(x) = V₀((x/a)² − 1)² plus a linear tilt. ħ, proton mass and Å are real; realistic DNA barriers (0.3–0.4 eV) tunnel too slowly to watch, so start low.</p>
@@ -282,13 +286,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="sec-head">
       <div class="eyebrow">02 · Sequence scanner</div>
       <h2>Map every base pair's tunneling risk in 3D</h2>
-      <p class="lede">Paste a DNA sequence or load a FASTA file. Each base pair gets a WKB tunneling rate, a thermal hopping rate and a tautomer stability factor, combined into a relative mutation propensity. Hover the helix or the track to inspect a site.</p>
+      <p class="lede">Paste a DNA sequence or load a FASTA file. Each base pair gets a WKB tunneling rate, a thermal hopping rate and a tautomer stability factor, combined into a relative mutation propensity. Hover or tap the helix or the track to inspect a site.</p>
     </div>
     <div class="scan-input">
       <div class="panel seqbox">
         <label for="seq" class="eyebrow" style="color:var(--muted)">Sequence (5′ → 3′)</label>
         <textarea id="seq" spellcheck="false"></textarea>
-        <div class="meta"><span id="seqMeta">Example sequence, illustrative only</span><span>A · C · G · T only, FASTA headers ignored, max 160 bp drawn</span></div>
+        <div class="meta"><span id="seqMeta">Example sequence, illustrative only</span><span>A · C · G · T only · FASTA headers ignored · max 160 bp drawn</span></div>
       </div>
       <div class="panel scan-side">
         <div class="ctl"><label for="sTemp">Temperature <output id="oTemp"></output></label><input type="range" id="sTemp" min="270" max="330" step="1" value="310"></div>
@@ -299,9 +303,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
 
     <div class="panel scan-stage">
-      <canvas id="scanGL" aria-label="3D helix coloured by mutation propensity"></canvas>
-      <span class="scan-hint">Drag to rotate</span>
-      <div class="legend">Low<i></i>High</div>
+      <div class="scan-view">
+        <canvas id="scanGL" aria-label="3D helix coloured by mutation propensity"></canvas>
+        <span class="scan-hint" id="scanHint">Drag to rotate · tap a rung</span>
+        <div class="legend">Low<i></i>High</div>
+      </div>
       <div class="track-wrap"><canvas id="track" aria-label="Propensity score along the sequence"></canvas></div>
     </div>
 
@@ -621,15 +627,15 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
 
   function draw(){
     ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
-    const padL=48,padR=18,top=H*.30,bot=H-34;
-    const xr=1.6*Math.max(1.2,P.a+.9);              // visible half-range in Å
+    const narrow=W<560;const padL=narrow?40:48,padR=narrow?10:18,top=Math.max(H*.32,150),bot=H-34;
+    const xr=(narrow?1.3:1.6)*Math.max(1.2,P.a+.9);              // visible half-range in Å
     const X=v=>padL+(v+xr)/(2*xr)*(W-padL-padR);
     const Emax=Math.max(P.V0*1.7,E0u*EU*2.4)/EU;
     const Y=e=>bot-(e/Emax)*(bot-top);
     const i0=Math.max(0,Math.floor((-xr-X0)/dx)),i1=Math.min(N-1,Math.ceil((xr-X0)/dx));
 
     // molecule strip
-    const my=H*.15;
+    const my=Math.max(H*.17,84);
     ctx.save();
     let pmax=0;for(let i=i0;i<=i1;i++){const p=re[i]*re[i]+im[i]*im[i];if(p>pmax)pmax=p;}
     for(let i=i0;i<=i1;i++){const p=(re[i]*re[i]+im[i]*im[i])/pmax;if(p<.002)continue;const px=X(x[i]);
@@ -637,7 +643,7 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
     // bond line
     const hx=Math.min(xr-.15,P.a+.95);
     ctx.strokeStyle=C.line;ctx.setLineDash([3,5]);ctx.beginPath();ctx.moveTo(X(-hx),my);ctx.lineTo(X(hx),my);ctx.stroke();ctx.setLineDash([]);
-    [[-hx,"N1 · guanine"],[hx,"N3 · cytosine"]].forEach(([ax,lab])=>{
+    [[-hx,narrow?"guanine":"N1 · guanine"],[hx,narrow?"cytosine":"N3 · cytosine"]].forEach(([ax,lab])=>{
       const px=X(ax);const g=ctx.createRadialGradient(px,my,0,px,my,20);g.addColorStop(0,"#9DB4FF");g.addColorStop(.5,"#3E6BFF");g.addColorStop(1,"rgba(62,107,255,0)");
       ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,my,20,0,7);ctx.fill();ctx.fillStyle="#0A0F1C";ctx.beginPath();ctx.arc(px,my,8,0,7);ctx.fill();
       ctx.fillStyle=C.fg;ctx.font="600 10px 'IBM Plex Mono',monospace";ctx.textAlign="center";ctx.fillText("N",px,my+3.5);
@@ -650,8 +656,8 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
     const eStep=Emax*EU>.6?.2:Emax*EU>.3?.1:Emax*EU>.12?.05:.02;
     for(let e=0;e<=Emax*EU+1e-9;e+=eStep){const y=Y(e/EU);ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();ctx.fillText(e.toFixed(2),padL-8,y+3);}
     ctx.textAlign="center";
-    for(let v=-Math.floor(xr);v<=Math.floor(xr);v++){const px=X(v);ctx.fillText(v+" Å",px,bot+20);ctx.beginPath();ctx.moveTo(px,bot);ctx.lineTo(px,bot+5);ctx.stroke();}
-    ctx.save();ctx.translate(14,(top+bot)/2);ctx.rotate(-Math.PI/2);ctx.fillText("ENERGY (eV)",0,0);ctx.restore();
+    for(let v=-Math.floor(xr);v<=Math.floor(xr);v++){const px=X(v);ctx.fillText(narrow?String(v):v+" Å",px,bot+20);ctx.beginPath();ctx.moveTo(px,bot);ctx.lineTo(px,bot+5);ctx.stroke();}
+    if(!narrow){ctx.save();ctx.translate(14,(top+bot)/2);ctx.rotate(-Math.PI/2);ctx.fillText("ENERGY (eV)",0,0);ctx.restore();}else{ctx.textAlign="left";ctx.fillText("eV",4,top-6);ctx.textAlign="center";}
     // well shading
     ctx.fillStyle="rgba(255,79,110,.05)";ctx.fillRect(X(0),top,W-padR-X(0),bot-top);
     ctx.fillStyle=C.hot;ctx.textAlign="right";ctx.fillText("TAUTOMER SIDE",W-padR-6,top+12);
@@ -679,7 +685,7 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
     if(flash>0){const px=X(flashX);ctx.strokeStyle=`rgba(255,79,110,${flash})`;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(px,top);ctx.lineTo(px,bot);ctx.stroke();
       ctx.beginPath();ctx.arc(px,ey,(1-flash)*80+6,0,7);ctx.stroke();flash-=.03;}
     ctx.restore();
-    ctx.fillStyle=C.dim;ctx.textAlign="right";ctx.fillText("— V(x)    — |ψ|²    — Re ψ",W-padR,H-8);
+    if(!narrow){ctx.fillStyle=C.dim;ctx.textAlign="right";ctx.fillText("— V(x)    — |ψ|²    — Re ψ",W-padR,H-6);}
 
     // sparkline
     const sw=sp.width,sh=sp.height;sx.clearRect(0,0,sw,sh);
@@ -771,26 +777,42 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
     });
     scanStart=performance.now();resize();
   }
+  // Phones zoom in on ~28 bp and pan; wider screens show the whole helix
+  let zoomed=false,viewHalf=4,panX=0,panTarget=0,camDist=10;
   function resize(){const W=canvas.clientWidth,H=canvas.clientHeight;renderer.setSize(W,H,false);cam.aspect=W/H;cam.updateProjectionMatrix();
-    const half=Math.max(4,(len*spacing)/2+1.2),vh=Math.tan(THREE.MathUtils.degToRad(cam.fov/2));
-    const dist=Math.max(half/(vh*cam.aspect),3.2/vh);cam.position.set(0,dist*.18,dist);cam.lookAt(0,0,0);}
+    const narrow=W<620,visBp=narrow?28:len;zoomed=narrow&&len>visBp;
+    viewHalf=Math.max(4,(Math.min(len,visBp)*spacing)/2+1.2);const vh=Math.tan(THREE.MathUtils.degToRad(cam.fov/2));
+    camDist=Math.max(viewHalf/(vh*cam.aspect),3.2/vh);
+    $("scanHint").textContent=zoomed?"Swipe sideways to pan · tap a rung":"Drag to rotate · hover a rung";
+    if(!zoomed){panX=panTarget=0;}placeCam();}
+  function panLimit(){return Math.max(0,(len-1)/2*spacing-viewHalf+1.4);}
+  function placeCam(){cam.position.set(panX,camDist*.18,camDist);cam.lookAt(panX,0,0);}
   addEventListener("resize",()=>{resize();drawTrack();});
 
-  canvas.addEventListener("pointerdown",e=>{dragging=true;lastX=e.clientX;canvas.setPointerCapture(e.pointerId);});
-  canvas.addEventListener("pointerup",()=>dragging=false);
+  let downX=0,moved=false;
+  const tmpV=new THREE.Vector3();
+  function pick(cx,cy,radius=28){const r=canvas.getBoundingClientRect();let best=-1,bd=radius*radius;
+    sprites.forEach((sp,i)=>{sp.getWorldPosition(tmpV).project(cam);if(tmpV.z>1)return;
+      const sx=r.left+(tmpV.x+1)/2*r.width,sy=r.top+(1-tmpV.y)/2*r.height,d=(sx-cx)**2+(sy-cy)**2;if(d<bd){bd=d;best=i;}});
+    return best;}
+  canvas.addEventListener("pointerdown",e=>{dragging=true;moved=false;lastX=downX=e.clientX;canvas.setPointerCapture(e.pointerId);});
+  canvas.addEventListener("pointercancel",()=>dragging=false);
+  canvas.addEventListener("pointerup",e=>{dragging=false;
+    if(!moved){const i=pick(e.clientX,e.clientY);setHover(i,e.clientX,e.clientY);}});
   canvas.addEventListener("pointermove",e=>{
-    if(dragging){const dxp=e.clientX-lastX;lastX=e.clientX;velocity=dxp*.01;targetSpin+=velocity;}
-    const r=canvas.getBoundingClientRect();ndc.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);
-    ray.setFromCamera(ndc,cam);const hit=ray.intersectObjects(rungMeshes)[0];
-    if(hit){setHover(hit.object.userData.i,e.clientX,e.clientY);}else setHover(-1);
+    if(dragging){const dxp=e.clientX-lastX;lastX=e.clientX;if(Math.abs(e.clientX-downX)>6)moved=true;
+      if(zoomed){const L=panLimit();panTarget=Math.max(-L,Math.min(L,panTarget-dxp*(2*viewHalf/canvas.clientWidth)));}
+      else{velocity=dxp*.01;targetSpin+=velocity;}}
+    if(e.pointerType==="mouse"&&!dragging){const i=pick(e.clientX,e.clientY);setHover(i,e.clientX,e.clientY);}
   });
-  canvas.addEventListener("pointerleave",()=>setHover(-1));
+  canvas.addEventListener("pointerleave",e=>{if(e.pointerType==="mouse")setHover(-1);});
+  addEventListener("scroll",()=>{if(!tip.hidden&&matchMedia("(hover: none)").matches)tip.hidden=true;},{passive:true});
 
   function showTip(i,cx,cy){
     const s=result.sites[i];const seq=result.sequence;const ctx=seq.slice(Math.max(0,i-3),i)+`<em style="color:var(--hot);font-style:normal">${seq[i]}</em>`+seq.slice(i+1,i+4);
     tip.innerHTML=`<div class="k">Position ${i+1} · ${s.pair==="GC"?"G–C":"A–T"} pair${s.cpg?" · CpG":""}</div><b style="letter-spacing:.14em">${ctx}</b>
       <dl><dt>Score</dt><dd>${s.score.toFixed(2)}</dd><dt>Barrier</dt><dd>${s.V0.toFixed(3)} eV</dd><dt>k tunnel</dt><dd>${sci(s.k_tunnel)} /s</dd><dt>k thermal</dt><dd>${sci(s.k_thermal)} /s</dd><dt>Tunnel share</dt><dd>${(s.share*100).toFixed(1)}%</dd></dl>`;
-    tip.style.left=cx+"px";tip.style.top=cy+"px";tip.hidden=false;
+    tip.hidden=false;const hw=tip.offsetWidth/2+8;tip.style.left=Math.max(hw,Math.min(innerWidth-hw,cx))+"px";tip.style.top=Math.max(tip.offsetHeight+70,cy)+"px";
   }
   function setHover(i,cx,cy){hoverI=i;if(i<0||!result){tip.hidden=true;}else showTip(i,cx,cy);drawTrack();}
 
@@ -800,7 +822,8 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
     requestAnimationFrame(frame);if(!visible||!len)return;
     const prog=SCAN_MS?Math.min(1,(now-scanStart)/SCAN_MS):1;
     const minX=-(len-1)/2*spacing,maxX=(len-1)/2*spacing;scanX=minX-1+(maxX-minX+2)*prog;
-    laser.position.x=laserGlow.position.x=scanX;laser.material.opacity=laserGlow.material.opacity=prog<1?.9:Math.max(0,laser.material.opacity-.03);
+    laser.position.x=laserGlow.position.x=scanX;
+    if(zoomed){const L=panLimit();if(prog<1)panTarget=Math.max(-L,Math.min(L,scanX));panX+=(panTarget-panX)*.12;placeCam();}laser.material.opacity=laserGlow.material.opacity=prog<1?.9:Math.max(0,laser.material.opacity-.03);
     laserGlow.material.opacity=laser.material.opacity*.5;
     if(!dragging){targetSpin+=velocity;velocity*=.94;if(!reduced)targetSpin+=.0025;}
     spin+=(targetSpin-spin)*.12;group.rotation.x=spin;
@@ -834,7 +857,10 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
   }
   tc.addEventListener("pointermove",e=>{if(!tc._geo)return;const r=tc.getBoundingClientRect();const i=Math.floor((e.clientX-r.left-tc._geo.padL)/tc._geo.bw);
     if(i>=0&&i<tc._geo.n)setHover(i,e.clientX,r.top+8);else setHover(-1);});
-  tc.addEventListener("pointerleave",()=>setHover(-1));
+  tc.addEventListener("pointerdown",e=>{if(!tc._geo)return;const r=tc.getBoundingClientRect();const i=Math.floor((e.clientX-r.left-tc._geo.padL)/tc._geo.bw);
+    if(i<0||i>=tc._geo.n)return;setHover(i,e.clientX,r.top+8);
+    if(zoomed){const L=panLimit();panTarget=Math.max(-L,Math.min(L,(i-(len-1)/2)*spacing));}});
+  tc.addEventListener("pointerleave",e=>{if(e.pointerType==="mouse")setHover(-1);});
 
   function fillStats(){
     const st=result.stats;
@@ -846,7 +872,8 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
       return`<div class="hot-row" tabindex="0" data-i="${i}"><span class="pos">#${i+1}</span><span class="ctx">${ctx}</span><span class="chip${s.cpg?" cpg":""}">${s.cpg?"CpG":s.pair==="GC"?"G–C":"A–T"}</span><span class="val">${s.score.toFixed(2)}</span></div>`;}).join("");
     document.querySelectorAll(".hot-row").forEach(row=>{
       const i=+row.dataset.i;
-      const go=()=>{const r=row.getBoundingClientRect();hoverI=i;drawTrack();};
+      const go=()=>{hoverI=i;drawTrack();if(zoomed){const L=panLimit();panTarget=Math.max(-L,Math.min(L,(i-(len-1)/2)*spacing));}};
+      row.addEventListener("click",go);
       row.addEventListener("mouseenter",go);row.addEventListener("focus",go);
       row.addEventListener("mouseleave",()=>{hoverI=-1;drawTrack();});row.addEventListener("blur",()=>{hoverI=-1;drawTrack();});
     });
