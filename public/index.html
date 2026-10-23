@@ -210,14 +210,67 @@ footer{border-top:1px solid var(--line);padding-block:32px calc(32px + env(safe-
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+/* INVESTIGATION */
+.inv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+@media (max-width:900px){.inv-grid{grid-template-columns:1fr}}
+.inv .panel{padding:22px;min-width:0}
+.inv h3{font-size:15px;margin-bottom:12px}
+.inv p{color:#C3CADB;margin:0 0 10px}
+.inv ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;color:#C3CADB}
+.inv code{font-family:var(--f-mono);font-size:12.5px;color:var(--wave)}
+.inv pre{white-space:pre-wrap;word-break:break-word;background:var(--deep);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto;margin:10px 0 0;font:12.5px/1.6 var(--f-mono);color:var(--wave)}
+.inv-ctl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:34px 0 8px}
+.inv-ctl label{font:12px var(--f-mono);color:var(--muted);display:flex;gap:8px;align-items:center}
+.inv select{background:var(--deep);border:1px solid var(--line-2);border-radius:8px;padding:7px 10px}
+.inv-ctl .seg{grid-template-columns:auto auto}.inv-ctl .seg button{padding:8px 14px}
+.tablewrap{overflow-x:auto}
+.inv table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+.inv #invVars{min-width:0;font-size:12px}.inv #invVars th,.inv #invVars td{white-space:normal;padding:7px 6px}
+.inv th,.inv td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.inv th:first-child,.inv td:first-child{text-align:left}
+.inv th{font:500 11px var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.inv svg{width:100%;height:auto;display:block}
+.inv svg .ax{fill:var(--muted);font:10.5px var(--f-mono)}
+.inv svg .gl{stroke:var(--line);stroke-width:1}
+.inv .note{font-size:12.5px;color:var(--muted)}
+.inv .finding{border-left:2px solid var(--wave);padding-left:16px;margin:0 0 18px}
+.inv .finding h3{font-size:14px;margin-bottom:6px}
+.inv .warn{border-left-color:var(--proton)}
+.inv b.num{color:var(--fg);font-family:var(--f-mono);font-weight:500}
+/* SCIENCE FAIR MODE */
+.fair-btn{white-space:nowrap}.nav .fair-btn{padding:8px 14px;font-size:12px}@media (max-width:520px){.nav-in{gap:10px}.logo{font-size:13px}.engine span{display:none}.nav .fair-btn{margin-left:auto}.engine{margin-left:0!important}}
+#fair{position:fixed;inset:0;z-index:200;display:grid;grid-template-rows:auto 1fr auto;background:radial-gradient(120% 90% at 50% 0%,#0F1830 0%,var(--ink) 62%);padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+#fair[hidden]{display:none}
+.fair-top,.fair-bot{display:flex;align-items:center;gap:12px;padding:16px clamp(16px,3vw,40px);flex-wrap:wrap}
+.fair-top .mono{font-size:13px;letter-spacing:.14em;color:var(--wave);text-transform:uppercase;margin-right:auto}
+.fair-bar{height:4px;background:var(--line)}.fair-bar i{display:block;height:100%;width:0;background:var(--proton)}
+.fair-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);align-items:center;padding:clamp(12px,3vw,40px) clamp(16px,5vw,80px);min-height:0;overflow:auto}
+@media (max-width:900px){.fair-stage{grid-template-columns:1fr;align-content:center}}
+.fair-stage h2{font-size:clamp(30px,5.2vw,78px);line-height:1.05;letter-spacing:-.02em}
+.fair-stage p{font-size:clamp(17px,2.1vw,30px);line-height:1.45;color:#C3CADB;margin:18px 0 0;max-width:30ch}
+.fair-stage .kick{font:500 clamp(13px,1.4vw,18px) var(--f-mono);letter-spacing:.14em;color:var(--proton);text-transform:uppercase;margin-bottom:14px}
+.fair-art svg{width:100%;height:auto;max-height:56vh;display:block}
+.fair-art .ax{fill:var(--muted);font:14px var(--f-mono)}
+.fair-art .lb{fill:var(--fg);font:600 17px var(--f-body)}
+.fair-slide>div{margin-block:auto}.fair-slide{display:contents}.fair-strip{padding:8px clamp(16px,3vw,40px);font:12.5px var(--f-mono);color:var(--muted);border-bottom:1px solid var(--line)}@media (max-width:640px){.fair-bot .btn{padding:9px 13px;font-size:13px}.fair-bot{gap:8px;padding:10px 16px}}.fair-slide[hidden]{display:none}
+.fair-chips{display:flex;flex-direction:column;gap:10px}
+.fair-chips div{padding:12px 16px;border:1px solid var(--line-2);border-radius:12px;font-size:clamp(15px,1.8vw,24px);color:var(--dim);transition:all .5s}
+.fair-chips div.on{color:var(--fg);border-color:var(--wave);background:var(--panel-2)}
+.fair-chips div:last-child.on{border-color:var(--hot)}
+.fair-note{font-size:clamp(15px,1.5vw,20px)!important;color:var(--muted)!important;max-width:none!important;margin-top:14px!important}
+.fair-bot .btn{font-size:clamp(14px,1.5vw,18px);padding:12px 18px}
+.fair-dots{display:flex;gap:8px;margin:0 auto}
+.fair-dots button{width:16px;height:16px;border-radius:50%;border:1px solid var(--line-2);background:none;cursor:pointer;padding:0}
+.fair-dots button[aria-current=true]{background:var(--proton);border-color:var(--proton)}
 </style>
 
 <header class="nav">
   <div class="wrap nav-in">
     <a class="logo" href="#top" aria-label="QuantumHelix home"><span class="logo-mark"><i></i></span>QuantumHelix</a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#sim">Simulation</a><a href="#scan">Scanner</a><a href="#pipeline">Pipeline</a><a href="#limits">Limits</a><a href="#roadmap">Roadmap</a>
+      <a href="#sim">Simulation</a><a href="#scan">Scanner</a><a href="#pipeline">Pipeline</a><a href="#limits">Limits</a><a href="#investigation">Investigation</a><a href="#roadmap">Roadmap</a>
     </nav>
+    <button class="btn fair-btn" id="fairOpen" aria-haspopup="dialog">Science Fair Mode</button>
     <div class="engine" id="engine" title="Where the physics is computed"><b></b><span>Engine · Browser</span></div>
   </div>
 </header>
@@ -229,7 +282,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="eyebrow">Quantum biology · Mutation modelling</div>
     <h1 style="margin-top:22px">Mutations start with a <span class="q">proton</span> out of place<span class="dot"></span></h1>
     <div class="hero-sub">
-      <p>QuantumHelix simulates proton tunneling in DNA base pairs and maps where a sequence is most vulnerable to spontaneous, tautomer-driven mutation.</p>
+      <p>QuantumHelix simulates proton tunneling in DNA base pairs and ranks the base pairs of a DNA sequence with a simplified, illustrative model. It is a teaching and exploration tool, not a mutation predictor.</p>
       <div class="ctas">
         <a class="btn primary" href="#sim"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 3l9 5-9 5z"/></svg>Run the simulation</a>
         <a class="btn" href="#scan">Scan a sequence</a>
@@ -285,8 +338,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">02 · Sequence scanner</div>
-      <h2>Map every base pair's tunneling risk in 3D</h2>
-      <p class="lede">Paste a DNA sequence or load a FASTA file. Each base pair gets a WKB tunneling rate, a thermal hopping rate and a tautomer stability factor, combined into a relative mutation propensity. Hover or tap the helix or the track to inspect a site.</p>
+      <h2>Rank every base pair in 3D with a simplified tunnelling model</h2>
+      <p class="lede">Paste a DNA sequence or load a FASTA file. Each base pair gets a WKB tunneling rate, a thermal hopping rate and a tautomer stability factor, combined into a relative model score. Hover or tap the helix or the track to inspect a site.</p>
     </div>
     <div class="scan-input">
       <div class="panel seqbox">
@@ -304,7 +357,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
     <div class="panel scan-stage">
       <div class="scan-view">
-        <canvas id="scanGL" aria-label="3D helix coloured by mutation propensity"></canvas>
+        <canvas id="scanGL" aria-label="3D helix coloured by relative model score"></canvas>
         <span class="scan-hint" id="scanHint">Drag to rotate · tap a rung</span>
         <div class="legend">Low<i></i>High</div>
       </div>
@@ -315,12 +368,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="stats">
         <div class="stat"><span>Length</span><strong id="stLen">–</strong><small>base pairs</small></div>
         <div class="stat"><span>GC content</span><strong id="stGC">–</strong><small>G–C pairs</small></div>
-        <div class="stat"><span>Hotspots</span><strong id="stHot">–</strong><small>score ≥ 0.85</small></div>
+        <div class="stat"><span>Model hotspots</span><strong id="stHot">–</strong><small>relative score ≥ 0.85</small></div>
         <div class="stat"><span>Tunneling share</span><strong id="stShare">–</strong><small>vs thermal hopping</small></div>
         <div class="stat"><span>CpG sites</span><strong id="stCpG">–</strong><small>reference overlay</small></div>
         <div class="stat"><span>Peak site</span><strong id="stPeak">–</strong><small id="stPeakS">position</small></div>
       </div>
-      <div class="panel hot-list"><h3>Top 5 sites by propensity</h3><div id="hotRows"></div></div>
+      <div class="panel hot-list"><h3>Top 5 sites by relative model score</h3><div id="hotRows"></div></div>
     </div>
   </div>
 </section>
@@ -329,7 +382,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">03 · Pipeline</div>
-      <h2>From a text file to a quantum risk map</h2>
+      <h2>From a text file to a relative-propensity map</h2>
       <p class="lede">The browser runs the same model as the Python engine. With the FastAPI backend running, the scanner sends sequences to it automatically.</p>
     </div>
     <div class="pipe">
@@ -337,7 +390,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="step"><div class="n">2</div><h3>Energy map</h3><p>Assign each pair a double-well barrier, adjusted by its neighbours.</p><code>V(x)=V₀((x/a)²−1)²</code></div>
       <div class="step"><div class="n">3</div><h3>Tunneling solve</h3><p>WKB integral from the zero-point level gives T per attempt.</p><code>T = e^(−2/ħ ∫√2m(V−E) dx)</code></div>
       <div class="step"><div class="n">4</div><h3>Propensity</h3><p>Combine tunneling, thermal hopping and tautomer stability.</p><code>log₁₀[(k_tun + k_th) · f]</code></div>
-      <div class="step"><div class="n">5</div><h3>Validate</h3><p>Compare hotspots with known mutation data such as CpG sites and COSMIC signatures.</p><code>COSMIC · denovo-db</code></div>
+      <div class="step"><div class="n">5</div><h3>Stress-test</h3><p>Vary the model’s assumptions and measure how stable the ranking is. Comparison with real mutation data is future work.</p><code>experiments/sensitivity.py</code></div>
       <div class="step"><div class="n">6</div><h3>Visualize</h3><p>Render the 3D helix, the score track and the ranked sites.</p><code>Three.js · Canvas</code></div>
     </div>
   </div>
@@ -357,7 +410,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <li>Rank sites in a sequence by relative tunneling-driven tautomer propensity.</li>
           <li>Show how barrier height, temperature and isotope mass change tunneling rates.</li>
           <li>Separate quantum tunneling from classical thermal hopping at each site.</li>
-          <li>Give researchers a fast first pass before expensive QM/MM simulations.</li>
+          <li>Help people explore how tunnelling depends on barrier, temperature and mass.</li>
         </ul>
       </div>
       <div class="panel">
@@ -374,29 +427,165 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </section>
 
+<section class="band inv" id="investigation" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">05 · Our investigation</div>
+      <h2>Our Investigation: Do the Hotspots Hold Up?</h2>
+      <p class="lede">An exploratory computational study. We change the model's own assumptions over thousands of scenarios and measure how much the predicted hotspot ranking moves. It tests the <em>mathematics of this model</em>, not real DNA.</p>
+    </div>
+
+    <div class="inv-grid" style="margin-top:0">
+      <div class="panel">
+        <h3>Research question and hypotheses</h3>
+        <p><b>Question.</b> How robust are the predicted proton-tunnelling hotspots when the physical assumptions of the model change?</p>
+        <p><b>H1.</b> The <em>rank order</em> of sites is robust to ±20–50 % changes in barrier height, width, temperature and tautomer asymmetry.<br><b>H2.</b> The <em>hotspot list</em> (the app's rule: rescaled score ≥ 0.85) is less stable than the rank order.</p>
+        <p class="note">Honest history: H2 and the "stress" study were added after the first run showed the rank order never changed. This is exploratory analysis, not a pre-registered test.</p>
+      </div>
+      <div class="panel">
+        <h3>What we changed, and what we held fixed</h3>
+        <div class="tablewrap"><table id="invVars" aria-label="Parameters varied"></table></div>
+        <p class="note" style="margin-top:10px"><b>Held constant:</b> the equations below, proton mass (the deuteron is only a separate sanity check), the 0.85 hotspot cutoff, one proton in a 1-D double well, no cellular environment. <b>Ranges</b> are ±20–50 % around the illustrative baselines. They are <em>not</em> literature-derived.</p>
+      </div>
+    </div>
+
+    <div class="inv-grid">
+      <div class="panel">
+        <h3>Methods and equations (existing physics engine, unchanged)</h3>
+<pre>V(x) = V0 ((x/a)^2 - 1)^2
+w = sqrt(8 V0 / (m a^2)),  E0 = hbar w / 2
+T = exp( -(2/hbar) * integral sqrt(2m(V-E0)) dx )   (WKB)
+k_tun = (w/2pi) T,  k_th = (w/2pi) exp(-(V0-E0)/kB T)
+f = 1 / (1 + exp(asym / kB T))      (tautomer fraction)
+site score = log10[ (k_tun + k_th) f ]
+V0 shifted -0.010 eV per A-T neighbour, +0.004 eV per G-C neighbour</pre>
+      </div>
+      <div class="panel">
+        <h3>Experimental design</h3>
+        <ul>
+          <li>Four <b>synthetic</b> 60 bp sequences (AT-rich, balanced, GC-rich, AT block + GC block). They are not real genes.</li>
+          <li><b>One at a time:</b> each parameter swept over 5 values.</li>
+          <li><b>Global:</b> 1,000-scenario Latin hypercube over all six parameters, run twice: plausible ranges and wider "stress" ranges.</li>
+          <li><b>Metrics</b> vs the baseline ranking: Kendall τ-b and Spearman ρ (tie-aware), hotspot-set Jaccard overlap, and whether G–C or A–T ranks higher on average. Also 3,000 scenario-vs-scenario comparisons that do not use the baseline.</li>
+          <li><b>Which assumption matters:</b> first-order sensitivity index S1 (binned estimate).</li>
+          <li>Seed 20261021. Scores are rounded to 10⁻⁹ before ranking so floating-point noise cannot invent distinctions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="inv-ctl" role="group" aria-label="Investigation controls">
+      <div class="seg" role="group" aria-label="Scenario range"><button id="invCore" aria-pressed="true">Plausible ranges</button><button id="invStress" aria-pressed="false">Stress ranges</button></div>
+      <label>Sequence <select id="invSeq"></select></label>
+      <span class="note" id="invSeqNote"></span>
+    </div>
+
+    <div class="panel" style="padding:8px 14px 14px">
+      <div class="tablewrap"><table id="invTable" aria-label="Stability summary"></table></div>
+    </div>
+    <p class="note" style="margin-top:8px">τ-b = 1 means the same order as the baseline; 0 means unrelated; negative means reversed. "Stable" here means τ-b ≥ 0.8, a threshold we chose. Jaccard = overlap of hotspot sets (1 = identical).</p>
+
+    <div class="inv-grid">
+      <div class="panel"><h3>1 · Which sites stay hotspots?</h3><div id="chPersist"></div><p class="note">Share of scenarios in which each site is called a hotspot. Outlined bars are hotspots in the baseline model. Colour: <span style="color:var(--hot)">G–C</span> / <span style="color:var(--cool)">A–T</span>.</p></div>
+      <div class="panel"><h3>2 · One assumption at a time</h3><div class="inv-ctl" style="margin:0 0 6px"><label>Parameter <select id="invParam"></select></label></div><div id="chOat"></div></div>
+      <div class="panel"><h3>3 · Which assumption matters most?</h3><div id="chS1"></div><p class="note">S1 = share of the variation in the stability metric explained by that parameter alone. A metric that never varies (τ-b in the plausible study) has nothing to explain, so its S1 is 0.</p></div>
+      <div class="panel"><h3>4 · Two assumptions together</h3><div class="inv-ctl" style="margin:0 0 6px"><div class="seg" role="group" aria-label="Metric"><button id="hMetJ" aria-pressed="true">Hotspot overlap</button><button id="hMetT" aria-pressed="false">Rank τ-b</button></div></div><div id="chHeat"></div></div>
+      <div class="panel"><h3>5 · How far before the ranking breaks? (A–T barrier)</h3><div id="chBreak1"></div></div>
+      <div class="panel"><h3>6 · How far before the ranking breaks? (neighbour effect)</h3><div id="chBreak2"></div><p class="note">Negative values reverse the sign of the stacking effect, a structural assumption the model never tests otherwise.</p></div>
+    </div>
+
+    <div style="margin-top:34px">
+      <div class="finding"><h3>Finding 1 · The rank order is almost unbreakable, and that is a property of the model, not a discovery</h3>
+        <p>In the plausible-range study, τ-b ≥ 0.8 in <b class="num" id="f1">–</b> of scenarios for every sequence. Barrier height, width, temperature, tautomer asymmetry and the A–T offset never reordered the sites. The order is fixed by built-in signs: G–C outranks A–T because its tautomer is cheaper, A–T neighbours lower the barrier, G–C neighbours raise it. Base identity alone already reproduces much of the ranking (τ-b with a plain G/C indicator: <b class="num" id="f1b">–</b>). Each sequence has only <b class="num" id="f1c">–</b> distinct score levels out of 60, so most sites are tied.</p></div>
+      <div class="finding warn"><h3>Finding 2 · The hotspot list is much less stable than the ranking</h3>
+        <p>Because scores are rescaled to 0–1 and cut at 0.85, the hotspot set depends on the <em>spread</em> between best and worst site, not just their order. Median overlap with the baseline hotspot set ranges from <b class="num" id="f2">–</b> across sequences in the plausible study. A stable rank order therefore does not mean a stable hotspot call.</p></div>
+      <div class="finding warn"><h3>Finding 3 · The least-justified assumption matters most</h3>
+        <p>The neighbour (stacking) shift size explains the most variation in hotspot overlap (S1 = <b class="num" id="f3">–</b> in the plausible study). Those −0.010 / +0.004 eV shifts are modelling assumptions, and we found no literature value for them. With the shift set to zero, the ranking collapses to a plain A–T versus G–C split.</p></div>
+      <div class="finding warn"><h3>Finding 4 · Under stress, the ranking can break</h3>
+        <p>With wider ranges (including a reversed neighbour effect), up to <b class="num" id="f4">–</b> of scenarios reverse the ranking for the worst-affected sequence (τ-b below 0). A–T only outranks G–C when its barrier is lowered by roughly <b class="num" id="f4b">–</b> eV, far outside the plausible range. Doubling the mass (deuteron check) changes rates but not the ranking.</p></div>
+      <div class="finding"><h3>Inconclusive</h3>
+        <p>Four short synthetic sequences cannot say how this behaves on real genomes. The baseline itself is illustrative, which is why we also report scenario-vs-scenario comparisons that do not depend on it. A ranking that is stable under changes to a model's parameters can still be wrong if the model's structure is wrong.</p></div>
+    </div>
+
+    <div class="inv-grid">
+      <div class="panel"><h3>What the results establish</h3><ul>
+        <li>Mathematical sensitivity: how this simplified model's rankings respond to its own parameters.</li>
+        <li>Within the plausible ranges, rank order does not depend on barrier height, width, temperature or asymmetry; hotspot calls depend mostly on the neighbour-shift assumption.</li>
+        <li>The scanner's output is largely determined by local base composition.</li></ul></div>
+      <div class="panel"><h3>What they do not establish</h3><ul>
+        <li>Biological validity. A stable ranking is not a validated prediction.</li>
+        <li>Mutation rates, disease risk or clinical meaning.</li>
+        <li>That real DNA behaves like these synthetic sequences or that the baseline parameters are right.</li>
+        <li>Novelty. We have not shown a new scientific result.</li></ul></div>
+    </div>
+
+    <div class="inv-grid">
+      <div class="panel"><h3>Comparison with published work (only where comparable)</h3>
+        <p><b>Comparable in direction only.</b> Slocombe, Al-Khalili &amp; Sacchi (2021, <a href="https://doi.org/10.1039/D0CP05781A" target="_blank" rel="noopener">doi:10.1039/D0CP05781A</a>) model A–T and G–C proton transfer with density functional theory and machine-learning nudged-elastic-band methods. A talk summary by one of the authors says lasting changes look unlikely for A–T but more significant for G–C. Our baseline also ranks G–C above A–T, but here that order comes straight from the illustrative asymmetry values we chose (0.10 vs 0.20 eV), so this is <b>not</b> an independent validation.</p>
+        <p><b>Not comparable.</b> Slocombe, Sacchi &amp; Al-Khalili (2022, <a href="https://doi.org/10.1038/s42005-022-00881-8" target="_blank" rel="noopener">doi:10.1038/s42005-022-00881-8</a>) report, for G–C in an open-quantum-systems model, that tunnelling contributes more than classical hopping. Our toy model gives a tunnelling share of about 5 % for a 0.36 eV barrier. Different physics (double proton transfer, environment, DFT barriers), so we cannot say which is closer. It is one more reason to treat our absolute rates as illustrative.</p></div>
+      <div class="panel"><h3>Reproduce it for the fair</h3>
+<pre>pip install -r requirements.txt
+python experiments/sensitivity.py   # ~10 s, seeded
+python tests/test_experiment.py     # 7 checks</pre>
+        <p style="margin-top:10px">This regenerates <code>results/</code> and <code>public/investigation_data.js</code>, which this page reads. The charts above are drawn from that file. The results hash is printed in <code>results/summary.txt</code>, so you can show two runs give the same numbers.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="band" id="roadmap" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">05 · Roadmap & model</div>
-      <h2>From science fair prototype to research platform</h2>
-      <p class="lede">Each stage keeps the same physics core and widens how much of the genome it can cover.</p>
+      <div class="eyebrow">06 · Next steps</div>
+      <h2>How we would improve this research</h2>
+      <p class="lede">Each step keeps the same physics core and replaces an illustrative assumption with something that can be checked.</p>
     </div>
     <div class="road">
-      <div class="panel now"><span class="tag">Now · Prototype</span><h3>WKB engine</h3><p>Live TDSE simulator, sequence scanner, FastAPI backend.</p></div>
-      <div class="panel"><span class="tag">Next</span><h3>DFT calibration</h3><p>Replace illustrative barriers with literature values for every sequence context.</p></div>
-      <div class="panel"><span class="tag">Then</span><h3>PINN surrogate</h3><p>Physics-informed neural networks on GPUs to scan whole chromosomes.</p></div>
-      <div class="panel"><span class="tag">Platform</span><h3>Lab SaaS</h3><p>Batch analysis, validation against mutation datasets, team workspaces.</p></div>
+      <div class="panel now"><span class="tag">Now · Prototype</span><h3>Simplified model</h3><p>1-D double well, WKB tunnelling, live Schrödinger simulator, sensitivity study.</p></div>
+      <div class="panel"><span class="tag">Next</span><h3>Literature-derived energy landscapes</h3><p>Replace the illustrative barriers and neighbour shifts with values calculated or measured for each base pair and sequence context.</p></div>
+      <div class="panel"><span class="tag">Then</span><h3>Environment effects</h3><p>Add the surroundings (water, enzymes such as polymerase and helicase) that change the barrier and the tautomer lifetime.</p></div>
+      <div class="panel"><span class="tag">Then</span><h3>Validation</h3><p>Compare outputs with published computational or experimental results for the same quantities and conditions. No such validation has been done yet.</p></div>
     </div>
-    <div class="biz">
-      <div><span>Customers</span><p>Genomics research labs, pharma and biotech R&D, quantum biology groups.</p></div>
-      <div><span>Revenue</span><p>Monthly lab subscription plus pay-per-analysis for large genomes.</p></div>
-      <div><span>Edge</span><p>No existing tool packages quantum tunneling models as a point-and-click genome scanner.</p></div>
-    </div>
+    <p class="cite">Limit that remains: even a well-calibrated molecular model does not by itself give a biological mutation rate, because replication fidelity and repair also decide whether a rare tautomer becomes a mutation.</p>
   </div>
 </section>
 </main>
 
 <footer><div class="wrap"><span>QuantumHelix · science fair prototype</span><span class="mono">ħ = 1.0546 × 10⁻³⁴ J·s · m<sub>p</sub> = 1.6726 × 10⁻²⁷ kg</span></div></footer>
+<div id="fair" role="dialog" aria-modal="true" aria-label="Science Fair Mode" hidden>
+  <div>
+    <div class="fair-top"><span class="mono">QuantumHelix · Science Fair Mode</span><span class="note mono" id="fairStep" style="font-size:13px;color:var(--muted)"></span><button class="btn" id="fairExit">Exit · Esc</button></div>
+    <div class="fair-bar" aria-hidden="true"><i id="fairProg"></i></div>
+    <div class="fair-strip">Schematic illustration · a proposed mechanism, not proof · model parameters are illustrative · a tunnelling event does not automatically cause a mutation</div>
+  </div>
+  <div class="fair-stage" id="fairStage" aria-live="polite">
+    <div class="fair-slide" data-d="6000"><div><div class="kick">The question</div><h2>Could a quantum effect cause a typo in DNA?</h2><p>Three steps. Under 30 seconds.</p></div>
+      <div class="fair-art"><svg viewBox="0 0 400 300" role="img" aria-label="Schematic DNA double helix"><g id="fHelix"></g></svg></div></div>
+    <div class="fair-slide" data-d="7000" hidden><div><div class="kick">Step 1 of 3</div><h2>A tiny proton sits in a DNA bond</h2><p>The two strands of DNA are held together by hydrogen bonds. In each bond, a proton sits at one spot.</p></div>
+      <div class="fair-art"><svg viewBox="0 0 600 300" role="img" aria-label="Schematic of a base pair with a proton in a hydrogen bond">
+        <rect x="40" y="90" width="150" height="120" rx="26" fill="#0E1424" stroke="#6FE3FF" stroke-width="2"/><text class="lb" x="115" y="158" text-anchor="middle">DNA base</text>
+        <rect x="410" y="90" width="150" height="120" rx="26" fill="#0E1424" stroke="#3E6BFF" stroke-width="2"/><text class="lb" x="485" y="158" text-anchor="middle">partner base</text>
+        <line x1="190" y1="125" x2="410" y2="125" stroke="#8C95AE" stroke-dasharray="6 6" stroke-width="2"/><line x1="190" y1="175" x2="410" y2="175" stroke="#8C95AE" stroke-dasharray="6 6" stroke-width="2"/>
+        <circle id="fProton" cx="250" cy="125" r="13" fill="#FFB547" style="filter:drop-shadow(0 0 10px #FFB547)"/>
+        <text class="ax" x="300" y="105" text-anchor="middle">hydrogen bonds</text><text class="ax" x="300" y="215" text-anchor="middle" fill="#FFB547" style="fill:#FFB547">● the proton</text>
+        <text class="ax" x="300" y="280" text-anchor="middle">schematic, not to scale</text></svg></div></div>
+    <div class="fair-slide" data-d="8000" hidden><div><div class="kick">Step 2 of 3</div><h2>It can tunnel through an energy barrier</h2><p>A quantum particle is spread out as a probability. Some of it can leak through a hill a ball could not climb.</p></div>
+      <div class="fair-art"><svg viewBox="0 0 600 320" role="img" aria-label="Schematic double-well energy curve with probability shifting between the two wells">
+        <path id="fWell" fill="none" stroke="#8C95AE" stroke-width="3"/><path id="fProb" fill="rgba(111,227,255,.35)" stroke="#6FE3FF" stroke-width="2"/>
+        <text class="ax" x="300" y="112" text-anchor="middle">energy barrier</text><text class="ax" x="300" y="314" text-anchor="middle" style="fill:#6FE3FF">probability of finding the proton</text>
+        <text class="ax" x="8" y="20">schematic: not computed, not a trajectory</text></svg></div></div>
+    <div class="fair-slide" data-d="8000" hidden><div><div class="kick">Step 3 of 3</div><h2>Rarely, that may lead to a copying mistake</h2><p class="fair-note">It matters only if the rare form lasts and the copying machinery misses it.</p></div>
+      <div class="fair-art"><div class="fair-chips" id="fChips"><div>Standard base pair</div><div>Proton transfers</div><div>Rare alternative form (tautomer)</div><div>Wrong partner during copying</div><div>Possible point mutation</div></div></div></div>
+    <div class="fair-slide" data-d="9000" hidden><div><div class="kick">What our test found</div><h2 id="fFindH">Do the hotspots hold up?</h2><p id="fFindP">We changed the model’s assumptions and measured how the ranking moved.</p><p class="fair-note">The parameters are illustrative. This tests the model, not real DNA.</p></div>
+      <div class="fair-art"><div class="fair-chips" id="fFind"></div></div></div>
+  </div>
+  <div class="fair-bot">
+    <button class="btn" id="fairPrev" aria-label="Previous step">◀ Back</button>
+    <button class="btn primary" id="fairPlay" title="Space or P">Pause</button>
+    <button class="btn" id="fairNext" aria-label="Next step">Next ▶</button>
+    <button class="btn" id="fairRestart">Restart</button>
+    <div class="fair-dots" id="fairDots" role="group" aria-label="Go to step"></div>
+    <button class="btn" id="fairExplore">Explore the experiment</button>
+  </div>
+</div>
 <div class="tip" id="tip" hidden></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -883,5 +1072,166 @@ const rampHex=t=>{const[r,g,b]=ramp(t);return(r<<16)|(g<<8)|b;};
 })();
 </script>
 
+<script src="investigation_data.js"></script>
+<script>
+(() => {
+"use strict";
+const D = window.QH_INVESTIGATION, $ = id => document.getElementById(id);
+if (!D) { $("invSeq").closest(".inv-ctl").insertAdjacentHTML("afterend", '<p class="note">Results file investigation_data.js not found. Run <code>python experiments/sensitivity.py</code> and reload.</p>'); return; }
+const st = { seq: 0, study: "core", param: "nb_scale", metric: "jac" };
+const S = () => D.studies[st.study], M = D.meta;
+const pct = v => v == null ? "–" : Math.round(v * 100) + "%", f2 = v => v == null ? "–" : v.toFixed(2);
+const rg = a => { const lo = Math.min(...a), hi = Math.max(...a); return lo === hi ? f2(lo) : f2(lo) + "–" + f2(hi); };
+const C = { tau: "#6FE3FF", jac: "#FFB547", GC: "#FF4F6E", AT: "#3E6BFF" };
+const nice = p => M.labels[p] || p;
+
+function line(xs, series, o) {
+  const W = 640, H = 262, L = 44, R = 14, T = 30, B = 40, x0 = Math.min(...xs), x1 = Math.max(...xs);
+  const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), Y = v => T + (1 - (v - o.y0) / (o.y1 - o.y0)) * (H - T - B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.label}">`;
+  for (let i = 0; i <= 4; i++) { const v = o.y0 + (o.y1 - o.y0) * i / 4; s += `<line class="gl" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${L - 6}" y="${Y(v) + 4}" text-anchor="end">${v.toFixed(2)}</text>`; }
+  for (let i = 0; i <= 4; i++) { const v = x0 + (x1 - x0) * i / 4; s += `<text class="ax" x="${X(v)}" y="${H - 20}" text-anchor="middle">${+v.toFixed(3)}</text>`; }
+  s += `<text class="ax" x="${(L + W - R) / 2}" y="${H - 4}" text-anchor="middle">${o.xl}</text>`;
+  if (o.mark != null) s += `<line x1="${X(o.mark)}" x2="${X(o.mark)}" y1="${T}" y2="${H - B}" stroke="#8C95AE" stroke-dasharray="4 4"/><text class="ax" x="${X(o.mark) + 4}" y="${T + 10}">baseline</text>`;
+  if (o.flip != null) s += `<line x1="${X(o.flip)}" x2="${X(o.flip)}" y1="${T}" y2="${H - B}" stroke="#FF4F6E" stroke-dasharray="2 3"/><text class="ax" x="${X(o.flip) + 4}" y="${T + 24}" fill="#FF4F6E">A–T outranks G–C</text>`;
+  series.forEach((sr, k) => {
+    let d = ""; sr.ys.forEach((y, i) => { if (y != null) d += (d && sr.ys[i - 1] != null ? "L" : "M") + X(xs[i]).toFixed(1) + " " + Y(y).toFixed(1); });
+    s += `<path d="${d}" fill="none" stroke="${sr.c}" stroke-width="2"/>`;
+    if (xs.length < 12) sr.ys.forEach((y, i) => { if (y != null) s += `<circle cx="${X(xs[i])}" cy="${Y(y)}" r="3.5" fill="${sr.c}"><title>${sr.n}: ${y} at ${xs[i]}</title></circle>`; });
+    s += `<text class="ax" x="${L + k * 130}" y="12" style="fill:${sr.c}">● ${sr.n}</text>`;
+  });
+  return s + "</svg>";
+}
+function bars(vals, cols, outline, ytitle) {
+  const W = 640, H = 230, L = 40, R = 8, T = 10, B = 34, n = vals.length, bw = (W - L - R) / n;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Hotspot persistence per site">`;
+  for (let i = 0; i <= 4; i++) { const y = T + (H - T - B) * (1 - i / 4); s += `<line class="gl" x1="${L}" x2="${W - R}" y1="${y}" y2="${y}"/><text class="ax" x="${L - 6}" y="${y + 4}" text-anchor="end">${(i / 4).toFixed(2)}</text>`; }
+  vals.forEach((v, i) => { const h = v * (H - T - B), x = L + i * bw; s += `<rect x="${x + 1}" y="${H - B - h}" width="${bw - 2}" height="${Math.max(h, 0.5)}" fill="${cols[i]}" fill-opacity=".8" ${outline[i] ? 'stroke="#fff" stroke-width="1.3"' : ""}><title>site ${i + 1}: hotspot in ${Math.round(v * 100)}% of scenarios${outline[i] ? " (baseline hotspot)" : ""}</title></rect>`; });
+  [0, 14, 29, 44, 59].forEach(i => { if (i < n) s += `<text class="ax" x="${L + i * bw + bw / 2}" y="${H - 18}" text-anchor="middle">${i + 1}</text>`; });
+  return s + `<text class="ax" x="${(L + W) / 2}" y="${H - 4}" text-anchor="middle">${ytitle}</text></svg>`;
+}
+function hbars(rows) {
+  const W = 640, rh = 34, H = rows.length * rh + 36, L = 250; let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="First-order sensitivity of each parameter">`;
+  rows.forEach((r, i) => { const y = 8 + i * rh;
+    s += `<text class="ax" x="${L - 8}" y="${y + 14}" text-anchor="end">${r.n}</text>`;
+    r.v.forEach((v, k) => { const w = Math.max(v, 0) * (W - L - 70); s += `<rect x="${L}" y="${y + k * 13}" width="${w}" height="10" rx="2" fill="${k ? C.tau : C.jac}"><title>${r.n}: S1 ${v.toFixed(3)} (${k ? "rank τ-b" : "hotspot overlap"})</title></rect><text class="ax" x="${L + w + 5}" y="${y + k * 13 + 9}">${v.toFixed(2)}</text>`; }); });
+  return s + `<text class="ax" x="${L}" y="${H - 6}" style="fill:${C.jac}">■ hotspot overlap</text><text class="ax" x="${L + 130}" y="${H - 6}" style="fill:${C.tau}">■ rank τ-b</text></svg>`;
+}
+function heat(g, k, metric) {
+  const W = 640, H = 330, L = 64, T = 10, B = 52, n = 9, cw = (W - L - 10) / n, ch = (H - T - B) / n, grid = g[metric][k];
+  const lo = metric === "tau" ? -1 : 0, mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+  const col = v => { if (v == null) return "#1D2740"; const t = Math.min(1, Math.max(0, (v - lo) / (1 - lo))); const c = t < .5 ? mix([255, 79, 110], [42, 52, 86], t * 2) : mix([42, 52, 86], [111, 227, 255], (t - .5) * 2); return `rgb(${c})`; };
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Stability grid for two parameters">`;
+  for (let b = 0; b < n; b++) for (let a = 0; a < n; a++) { const v = grid[n - 1 - b][a]; s += `<rect x="${L + a * cw}" y="${T + b * ch}" width="${cw - 1}" height="${ch - 1}" fill="${col(v)}"><title>${nice(g.x)} = ${g.xvals[a]}, ${nice(g.y)} = ${g.yvals[n - 1 - b]}: ${v}</title></rect><text class="ax" x="${L + a * cw + cw / 2}" y="${T + b * ch + ch / 2 + 4}" text-anchor="middle" style="fill:#fff;font-size:9.5px">${v == null ? "–" : v.toFixed(2)}</text>`; }
+  [0, 2, 4, 6, 8].forEach(a => s += `<text class="ax" x="${L + a * cw + cw / 2}" y="${H - B + 14}" text-anchor="middle">${g.xvals[a]}</text><text class="ax" x="${L - 6}" y="${T + (n - 1 - a) * ch + ch / 2 + 4}" text-anchor="end">${g.yvals[a]}</text>`);
+  return s + `<text class="ax" x="${(L + W) / 2}" y="${H - 20}" text-anchor="middle">${nice(g.x)}</text><text class="ax" x="${L}" y="${H - 4}">vertical axis: ${nice(g.y)} · low <tspan style="fill:#FF4F6E">■</tspan> high <tspan style="fill:#6FE3FF">■</tspan></text></svg>`;
+}
+
+function render() {
+  const k = st.seq, s = S(), g = s.global_[k], seq = D.sequences[k];
+  $("invSeqNote").textContent = seq.label + " · " + seq.length + " bp · " + seq.gc_percent + "% GC";
+  const h = `<tr><th>Sequence</th><th>GC</th><th>Score levels</th><th>τ-b median</th><th>τ-b ≥ 0.8</th><th>τ-b &lt; 0</th><th>Hotspot overlap median</th><th>Overlap ≥ 0.5</th><th>Same top class as baseline</th></tr>`;
+  $("invTable").innerHTML = h + D.sequences.map((q, i) => { const x = s.global_[i]; return `<tr${i === k ? ' style="background:var(--panel-2)"' : ""}><td>${q.id}</td><td>${q.gc_percent}%</td><td>${q.distinct_levels}</td><td>${f2(x.tau.median)}</td><td>${pct(x.frac_tau_ge_stable)}</td><td>${pct(x.frac_tau_negative)}</td><td>${f2(x.jac.median)}</td><td>${pct(x.frac_jac_ge_half)}</td><td>${pct(x.frac_same_top_class)}</td></tr>`; }).join("");
+  $("chPersist").innerHTML = bars(g.persistence, seq.seq.split("").map(b => "GC".includes(b) ? C.GC : C.AT), seq.base_score.map(v => v >= M.hotspot_cut), "site (base pair) position · bars = share of scenarios");
+  const p = st.param, o = D.oat[p];
+  $("chOat").innerHTML = line(o.values, [{ n: "rank τ-b", c: C.tau, ys: o.tau[k] }, { n: "hotspot overlap", c: C.jac, ys: o.jac[k] }], { y0: 0, y1: 1, xl: nice(p), mark: M.baseline[p], label: "One-at-a-time sweep of " + nice(p) });
+  $("chS1").innerHTML = hbars(M.params.slice().sort((a, b) => s.s1_jac[b].mean - s.s1_jac[a].mean).map(q => ({ n: nice(q), v: [s.s1_jac[q].mean, s.s1_tau[q].mean] })));
+  $("chHeat").innerHTML = heat(s.grid, k, st.metric) + `<p class="note">Other parameters held at baseline. Axes are the two most influential parameters in this study.</p>`;
+  const b1 = D.breaking.AT_offset, b2 = D.breaking.nb_scale;
+  $("chBreak1").innerHTML = line(b1.values, [{ n: "rank τ-b", c: C.tau, ys: b1.tau[k] }, { n: "hotspot overlap", c: C.jac, ys: b1.jac[k] }], { y0: Math.min(0, Math.floor(Math.min(...b1.tau[k].filter(v => v != null)) * 2) / 2), y1: 1, xl: "A–T barrier offset (eV; 0 = illustrative baseline)", mark: 0, flip: b1.flip[k].first_flip_value, label: "Extended scan of the A–T barrier offset" });
+  $("chBreak2").innerHTML = line(b2.values, [{ n: "rank τ-b", c: C.tau, ys: b2.tau[k] }, { n: "hotspot overlap", c: C.jac, ys: b2.jac[k] }], { y0: Math.min(0, Math.floor(Math.min(...b2.tau[k].filter(v => v != null)) * 2) / 2), y1: 1, xl: "Neighbour-shift multiplier (1 = baseline)", mark: 1, label: "Extended scan of the neighbour shift" });
+}
+function fill() {
+  const c = D.studies.core, x = D.studies.stress, t = (id, v) => { $(id).textContent = v; };
+  t("f1", pct(Math.min(...c.global_.map(g => g.frac_tau_ge_stable))));
+  t("f1b", rg(D.sequences.map(q => q.tau_vs_gc_indicator)));
+  t("f1c", Math.min(...D.sequences.map(q => q.distinct_levels)) + "–" + Math.max(...D.sequences.map(q => q.distinct_levels)));
+  t("f2", rg(c.global_.map(g => g.jac.median)));
+  t("f3", f2(c.s1_jac.nb_scale.mean));
+  t("f4", pct(Math.max(...x.global_.map(g => g.frac_tau_negative))));
+  const fl = D.breaking.AT_offset.flip.map(f => Math.abs(f.first_flip_value)); t("f4b", rg(fl));
+  const rows = M.params.map(q => `<tr><td>${nice(q)}</td><td>${c.ranges[q][0]} to ${c.ranges[q][1]}</td><td>${x.ranges[q][0]} to ${x.ranges[q][1]}</td><td>${M.baseline[q]}</td></tr>`).join("");
+  $("invVars").innerHTML = `<tr><th>Parameter</th><th>Plausible</th><th>Stress</th><th>Baseline</th></tr>` + rows;
+  $("invSeq").innerHTML = D.sequences.map((q, i) => `<option value="${i}">${q.id}</option>`).join("");
+  $("invParam").innerHTML = M.params.map(q => `<option value="${q}"${q === st.param ? " selected" : ""}>${nice(q)}</option>`).join("");
+}
+const seg = (a, b, key, va, vb) => { [[a, va], [b, vb]].forEach(([el, v]) => $(el).addEventListener("click", () => { st[key] = v; $(a).setAttribute("aria-pressed", v === va); $(b).setAttribute("aria-pressed", v === vb); render(); })); };
+seg("invCore", "invStress", "study", "core", "stress"); seg("hMetJ", "hMetT", "metric", "jac", "tau");
+$("invSeq").addEventListener("change", e => { st.seq = +e.target.value; render(); });
+$("invParam").addEventListener("change", e => { st.param = e.target.value; render(); });
+fill(); render();
+})();
+</script>
+<script>
+(() => {
+"use strict";
+const $ = id => document.getElementById(id), fair = $("fair"), reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const slides = [...fair.querySelectorAll(".fair-slide")], dur = slides.map(s => +s.dataset.d), N = slides.length;
+let i = 0, t = 0, playing = !reduced, raf = 0, last = 0, opener = null;
+const prog = $("fairProg"), well = $("fWell"), prob = $("fProb"), proton = $("fProton"), chips = [...$("fChips").children];
+const X = x => 300 + x * 180, g = (x, c) => Math.exp(-((x - c) ** 2) / 0.05);
+well.setAttribute("d", Array.from({ length: 61 }, (_, k) => { const x = -1.5 + k * 0.05; return (k ? "L" : "M") + X(x).toFixed(1) + " " + (250 - 110 * ((x * x - 1) ** 2) * 0.9 + 20).toFixed(1); }).join(""));
+$("fHelix").innerHTML = Array.from({ length: 14 }, (_, k) => { const y = 20 + k * 19, a = Math.sin(k * 0.55) * 80; return `<line x1="${200 - a}" y1="${y}" x2="${200 + a}" y2="${y}" stroke="#1D2740" stroke-width="3"/><circle cx="${200 - a}" cy="${y}" r="6" fill="#6FE3FF"/><circle cx="${200 + a}" cy="${y}" r="6" fill="#3E6BFF"/>`; }).join("") + '<circle cx="200" cy="145" r="9" fill="#FFB547" style="filter:drop-shadow(0 0 8px #FFB547)"/>';
+$("fairDots").innerHTML = slides.map((_, k) => `<button aria-label="Step ${k + 1} of ${N}" data-k="${k}"></button>`).join("");
+// findings pulled from the generated results file; generic text if it is missing
+const D = window.QH_INVESTIGATION;
+if (D) {
+  const c = D.studies.core, f = v => Math.round(v * 100) + "%", rg = a => Math.min(...a).toFixed(2) + "–" + Math.max(...a).toFixed(2);
+  $("fFindH").textContent = "The ranking held. The hotspot list did not.";
+  $("fFindP").textContent = "We changed the model’s assumptions in " + (2 * D.meta.n_lhs).toLocaleString() + " scenarios.";
+  $("fFind").innerHTML = [["Site order unchanged", f(Math.min(...c.global_.map(x => x.frac_tau_ge_stable))) + " of scenarios (set by the model’s built-in rules)"], ["Hotspot list overlap", rg(c.global_.map(x => x.jac.median)) + " (1 = identical)"], ["Assumption that matters most", "the neighbour shift, which has no literature value yet"]].map(r => `<div class="on"><b>${r[0]}</b><br>${r[1]}</div>`).join("");
+} else { $("fFind").innerHTML = '<div class="on">Run experiments/sensitivity.py to generate the results.</div>'; }
+
+function show(k) {
+  i = (k + N) % N; t = 0;
+  slides.forEach((s, j) => s.hidden = j !== i);
+  $("fairStage").scrollTop = 0;
+  $("fairStep").textContent = (i + 1) + " / " + N;
+  [...$("fairDots").children].forEach((b, j) => b.setAttribute("aria-current", j === i));
+  draw();
+}
+function draw() {
+  prog.style.width = (reduced && !playing ? 100 : Math.min(100, t / dur[i] * 100)) + "%";
+  if (i === 1) proton.setAttribute("cx", 250 + (reduced ? 0 : 6 * Math.sin(t / 120)) + (reduced ? 0 : 4 * Math.sin(t / 47)));
+  if (i === 2) {
+    const wl = reduced ? 0.7 : 0.5 + 0.5 * Math.cos(t / 6000 * 2 * Math.PI), wr = 1 - wl;
+    let d = "M" + X(-1.5) + " 290"; for (let k = 0; k <= 60; k++) { const x = -1.5 + k * 0.05, p = wl * g(x, -1) + wr * g(x, 1); d += "L" + X(x).toFixed(1) + " " + (290 - 130 * p).toFixed(1); }
+    prob.setAttribute("d", d + "L" + X(1.5) + " 290Z");
+  }
+  if (i === 3) { const n = reduced && !playing ? 5 : Math.min(5, 1 + Math.floor(t / dur[3] * 5.5)); chips.forEach((c, k) => c.classList.toggle("on", k < n)); }
+}
+function loop(ts) {
+  raf = requestAnimationFrame(loop);
+  const dt = Math.min(100, ts - (last || ts)); last = ts;
+  if (playing && !reduced) { t += dt; if (t >= dur[i]) show(i + 1); else draw(); }
+  else if (!reduced) draw();
+}
+function setPlay(p) { playing = p; $("fairPlay").textContent = p ? "Pause" : "Play"; $("fairPlay").setAttribute("aria-label", p ? "Pause the presentation" : "Play the presentation"); }
+function open() {
+  opener = document.activeElement; fair.hidden = false; document.body.style.overflow = "hidden";
+  document.querySelectorAll("header.nav, main, footer").forEach(e => e.inert = true);
+  setPlay(!reduced); show(0); last = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); $("fairPlay").focus();
+  if (location.hash !== "#fair") history.replaceState(null, "", "#fair");
+}
+function close(goto) {
+  cancelAnimationFrame(raf); raf = 0; fair.hidden = true; document.body.style.overflow = "";
+  document.querySelectorAll("header.nav, main, footer").forEach(e => e.inert = false);
+  history.replaceState(null, "", location.pathname + location.search);
+  if (goto) $("sim").scrollIntoView({ behavior: reduced ? "auto" : "smooth" }); else if (opener && opener.focus) opener.focus();
+}
+$("fairOpen").addEventListener("click", open); $("fairExit").addEventListener("click", () => close(false)); $("fairExplore").addEventListener("click", () => close(true));
+$("fairPlay").addEventListener("click", () => setPlay(!playing)); $("fairNext").addEventListener("click", () => show(i + 1)); $("fairPrev").addEventListener("click", () => show(i - 1)); $("fairRestart").addEventListener("click", () => { show(0); setPlay(!reduced); });
+$("fairDots").addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.k); });
+fair.addEventListener("keydown", e => {
+  if (e.key === "Escape") { close(false); return; }
+  const tag = e.target.tagName; if (e.key === "ArrowRight") show(i + 1); else if (e.key === "ArrowLeft") show(i - 1); else if (e.key.toLowerCase() === "r" && tag !== "INPUT") { show(0); setPlay(!reduced); }
+  else if ((e.key === " " && tag !== "BUTTON") || e.key.toLowerCase() === "p") { e.preventDefault(); setPlay(!playing); }
+  if (e.key === "Tab") { const f = [...fair.querySelectorAll("button")].filter(b => b.offsetParent !== null || b === document.activeElement); const a = f[0], z = f[f.length - 1]; if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); } }
+});
+document.addEventListener("visibilitychange", () => { if (document.hidden) last = 0; });
+window.addEventListener("hashchange", () => { if (location.hash === "#fair" && fair.hidden) open(); });
+if (location.hash === "#fair") open();
+})();
+</script>
 </body>
 </html>
